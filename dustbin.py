@@ -13,24 +13,21 @@ class Dustbin:
         self.house_waste_content = []
 
     def throw_out_garbage(self, garbage):
-        if garbage == PlasticGarbage.clean:
-            try:
-                self.plastic_content.append(garbage)
-            except DustbinContentError:
-                pass
-        if garbage == PaperGarbage.squeeze:
-            try:
-                self.paper_content.append(garbage)
-            except DustbinContentError:
-                pass
-        if garbage == Garbage:
+        self.garbage = garbage
+        if self.garbage == PlasticGarbage.clean:
+            self.plastic_content.append(garbage)
+        elif self.garbage == PaperGarbage.squeeze:
+            self.paper_content.append(garbage)
+        elif self.garbage == Garbage:
             self.house_waste_content.append(garbage)
-        if garbage != Garbage:
-            DustbinContentError
-        if garbage != PaperGarbage:
-            DustbinContentError
+        else:
+            raise DustbinContentError()
+        # if garbage != Garbage:
+        #     raise DustbinContentError
+        # if garbage != PaperGarbage:
+        #     raise DustbinContentError
         if garbage != PlasticGarbage:
-            DustbinContentError
+            raise DustbinContentError
 
         def empty_contents(self):
             del self.plastic_content[:]
